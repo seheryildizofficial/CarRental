@@ -32,7 +32,15 @@ const CustomFilter = ({ title, paramName, options }: CustomProps) => {
     <div className="text-black w-fit">
       <Select
         defaultValue={defaultValue}
-        onChange={(e) => setSelected(e)}
+        onChange={(selectedOption) => {
+          const transformedValue = selectedOption
+            ? {
+                label: selectedOption.label || "",
+                value: selectedOption.value || "",
+              }
+            : null;
+          setSelected(transformedValue);
+        }}
         placeholder={title}
         className="min-w-[100px]"
         options={options}

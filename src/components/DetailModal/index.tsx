@@ -1,4 +1,3 @@
-import React from "react";
 import { CarType } from "../../types";
 import { generateImage } from "../../utils/generateImage";
 import { AnimatePresence, motion } from "framer-motion";
