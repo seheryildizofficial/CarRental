@@ -23,6 +23,7 @@ Kullanıcılar, marka, model gibi seçenekler arasında kolayca seçim yapabilir
 - react-router-dom
 - react-select
 - tailwind
+- vercel'den canlı incele https://car-rental-9plb.vercel.app/
 
 ![Gif](/public/car.gif)
 
