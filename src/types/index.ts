@@ -1,8 +1,12 @@
+import { MouseEventHandler } from "react";
+
 export type ButtonPropsType = {
   disabled?: boolean;
   designs?: string;
   btnType?: "submit" | "reset" | "button";
   title: string;
+  rIcon?: string;
+  handleClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
 //apiden gelen araç verisinin tipi
@@ -20,3 +24,8 @@ export interface CarType {
   transmission: "a" | "m";
   year: number;
 }
+
+export type OptionType = {
+  label: string;
+  value: string;
+};

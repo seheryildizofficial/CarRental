@@ -5,15 +5,20 @@ import CustomFilter from "../CustomFilter";
 import { fetchCars } from "../utils/fetchCars";
 import { CarType } from "../types";
 import Card from "../Card";
+import { useSearchParams } from "react-router-dom";
+import ShowMore from "../components/ShowMore";
+import { fuels, years } from "../constants";
 
 const MainPage = () => {
   const [cars, setCars] = useState<CarType[] | null>(null);
   const [isError, setIsError] = useState<boolean>(false);
+  const [params] = useSearchParams();
   useEffect(() => {
-    fetchCars()
+    const paramsObj = Object.fromEntries(params.entries());
+    fetchCars(paramsObj)
       .then((data) => setCars(data))
       .catch(() => setIsError(true));
-  }, []);
+  }, [params]);
   return (
     <div>
       <Hero />
@@ -26,8 +31,16 @@ const MainPage = () => {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <CustomFilter />
-            <CustomFilter />
+            <CustomFilter
+              paramName={"fuel_type"}
+              title="Yakıt Tipi"
+              options={fuels}
+            />
+            <CustomFilter
+              paramName={"year"}
+              title="Üretim Yılı"
+              options={years}
+            />
           </div>
         </div>
         {/**araba listesi*/}
@@ -50,6 +63,7 @@ const MainPage = () => {
                 <Card key={i} car={car} />
               ))}
             </div>
+            <ShowMore />
           </section>
         )}
       </div>
